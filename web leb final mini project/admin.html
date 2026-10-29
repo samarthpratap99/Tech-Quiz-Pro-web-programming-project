@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Admin Panel</title>
+<style>body{font-family:Segoe UI;background:#0f0c29;color:#fff;display:flex;justify-content:center;padding:20px}.box{background:rgba(255,255,255,.08);padding:25px;border-radius:16px;max-width:600px;width:100%}input,select,textarea{width:100%;padding:10px;margin:6px 0 12px;border-radius:8px;border:1px solid #555;background:rgba(255,255,255,.1);color:#fff}button{padding:10px 16px;border:none;border-radius:8px;background:#667eea;color:#fff;cursor:pointer;font-weight:700}</style>
+</head><body>
+<div class="box">
+<h2>⚙️ Admin - Add Question</h2><p style="font-size:12px;color:#94a3b8">Password: admin123</p>
+<input type="password" id="pass" placeholder="Enter admin password">
+<select id="subject"><option value="python">Python</option><option value="web">Web</option><option value="adbms">ADBMS</option><option value="acn">ACN</option><option value="aip">AIP</option><option value="java">Java</option><option value="aptitude">Aptitude</option><option value="cs">CS</option></select>
+<textarea id="q" placeholder="Question (Bloom L4/L5)"></textarea>
+<input id="o1" placeholder="Option A"><input id="o2" placeholder="Option B"><input id="o3" placeholder="Option C"><input id="o4" placeholder="Option D">
+<select id="ans"><option value="0">Correct: A</option><option value="1">Correct: B</option><option value="2">Correct: C</option><option value="3">Correct: D</option></select>
+<select id="bloom"><option>Analyze L4</option><option>Evaluate L5</option></select>
+<textarea id="exp" placeholder="Explanation"></textarea>
+<button onclick="addQ()">Add Question</button>
+<a href="index.html"><button style="background:#444;margin-left:8px;">Back to Quiz</button></a>
+<p id="msg"></p>
+<script>
+function addQ(){
+ if(document.getElementById('pass').value!=='admin123'){ alert('Wrong password'); return; }
+ let full = JSON.parse(localStorage.getItem('customQuizDB'));
+ if(!full){ alert('Pehle index.html open karke ek quiz start karo'); return; }
+ const sub=document.getElementById('subject').value;
+ const newQ={ q: document.getElementById('q').value, options:[o1.value,o2.value,o3.value,o4.value], ans: parseInt(ans.value), bloom: bloom.value, exp: exp.value };
+ full[sub].push(newQ);
+ localStorage.setItem('customQuizDB', JSON.stringify(full));
+ document.getElementById('msg').textContent='Added! Total in '+sub+': '+full[sub].length;
+}
+</script>
+</div>
+</body></html>

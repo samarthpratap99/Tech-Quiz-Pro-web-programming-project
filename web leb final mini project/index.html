@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechQuiz Pro - Final Premium</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+<div class="bg-bubbles"><span></span><span></span></div>
+<button id="themeBtn" onclick="toggleTheme()">🌙</button>
+
+<div class="container">
+  <div id="homePage">
+    <div class="top-badge">✨ Bloom L4/L5 + Certificate + Leaderboard + Negative Marking</div>
+    <h1>TechQuiz <span>Pro</span></h1>
+    <p class="subtitle">8 Subjects • Shuffled Options • Premium Certificate</p>
+    <input type="text" id="userName" placeholder="👤 Enter Your Full Name for Certificate">
+    <div class="grid">
+      <div class="card python" onclick="openQuiz('python')"><div class="icon">🐍</div><h3>Python</h3><div class="chip">10 Qs • L4/L5</div></div>
+      <div class="card web" onclick="openQuiz('web')"><div class="icon">🌐</div><h3>Web Programming</h3><div class="chip">10 Qs • L4/L5</div></div>
+      <div class="card adbms" onclick="openQuiz('adbms')"><div class="icon">🗄️</div><h3>ADBMS</h3><div class="chip">10 Qs • L4/L5</div></div>
+      <div class="card acn" onclick="openQuiz('acn')"><div class="icon">📡</div><h3>ACN</h3><div class="chip">10 Qs • L4/L5</div></div>
+      <div class="card aip" onclick="openQuiz('aip')"><div class="icon">🤖</div><h3>AIP</h3><div class="chip">10 Qs • L4/L5</div></div>
+      <div class="card java" onclick="openQuiz('java')"><div class="icon">☕</div><h3>Java Programming</h3><div class="chip">10 Qs • L4/L5</div></div>
+      <div class="card apt" onclick="openQuiz('aptitude')"><div class="icon">🧩</div><h3>Computer Aptitude</h3><div class="chip">10 Qs • L4/L5</div></div>
+      <div class="card cs" onclick="openQuiz('cs')"><div class="icon">💻</div><h3>Computer Science</h3><div class="chip">10 Qs • L4/L5</div></div>
+    </div>
+    <div class="leaderboard">
+      <h3>🏆 Leaderboard - Top 5</h3>
+      <div id="leaderList">No scores yet. Be the first!</div>
+      <button class="small-btn" onclick="clearLeaderboard()">Clear</button>
+      <a href="admin.html" class="small-btn" style="text-decoration:none;">Admin Panel ⚙️</a>
+    </div>
+  </div>
+
+  <div id="quizPage">
+    <div class="quiz-header">
+      <button onclick="goHome()" class="back">← Home</button>
+      <div class="subject-pill" id="subPill">PYTHON</div>
+      <div class="timer-box">⏱ <span id="timer">45</span>s</div>
+    </div>
+    <div class="progress-track"><div id="progress"></div></div>
+    <div class="q-meta"><span id="qCount">Q 1/10</span> <span id="bloom" class="bloom">L4</span> <span>Score: <b id="score">0</b> <small style="color:#ff9f43">(-0.25)</small></span></div>
+    <h2 id="question" class="question"></h2>
+    <div id="options" class="options"></div>
+    <div class="explain" id="explain"></div>
+    <button id="nextBtn" disabled>Next Question →</button>
+  </div>
+
+  <div id="resultPage">
+    <div class="result-card" id="certificateArea">
+      <div class="cert-box">
+        <div class="cert-border">
+          <div class="cert-inner">
+            <div class="cert-header"><div class="cert-logo">🎓</div><h1>TechQuiz Pro</h1><p>CERTIFICATE OF ACHIEVEMENT</p></div>
+            <div class="cert-body">
+              <p class="cert-present">This certificate is proudly presented to</p>
+              <h2 class="cert-name" id="certName">YOUR NAME</h2>
+              <div class="cert-line"></div>
+              <p class="cert-desc" id="certDesc">For outstanding performance</p>
+              <div class="cert-scores">
+                <div><span id="certScore">9/10</span><small>Score</small></div>
+                <div class="seal">🏆<br><small>EXCELLENCE</small></div>
+                <div><span id="certPerc">90%</span><small>Accuracy</small></div>
+              </div>
+            </div>
+            <div class="cert-footer">
+              <div class="sign"><div class="sign-line"></div><b>Quiz Master</b><small>TechQuiz Pro</small></div>
+              <div class="sign"><div class="sign-line"></div><b id="certDate">22 Sep 2026</b><small>Date</small></div>
+            </div>
+            <div class="cert-watermark">TechQuiz Pro</div>
+          </div>
+        </div>
+      </div>
+      <div class="stats" style="margin-top:20px;"><div><b id="rCorrect">0</b><small>Correct</small></div><div><b id="rWrong">0</b><small>Wrong</small></div><div><b id="rPerc">0%</b><small>Final</small></div></div>
+    </div>
+    <button class="btn-primary" onclick="downloadCertificate()">📜 Download Premium Certificate</button>
+    <button class="btn-primary" style="background:rgba(255,255,255,.15);color:#fff;margin-top:8px;" onclick="goHome()">Try Another Subject 🔄</button>
+  </div>
+</div>
+<canvas id="confetti"></canvas>
+<script src="script.js"></script>
+</body>
+</html>
